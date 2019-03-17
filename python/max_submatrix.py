@@ -1,4 +1,15 @@
+"""
+return square submatrix that sums to the higest value
 
+this solution is O(l^3) where l is the length of one side of the matrix
+ *technically O(longer_side * shorter_side ^ 2)
+
+first we use DP to build a way to get sums of squares in constant time (O(l^2))
+
+then we go through each element and try all valid squares starting from there (O(l^3))
+
+once we find the max subarray, slice it out and return
+"""
 
 class DpSum(object):
     def __init__(self, arr):

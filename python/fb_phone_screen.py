@@ -3,7 +3,10 @@ tests = []
 """
 is_palindrome('ab  c, d!  c3ba') -> True
 
-return True if input is palindrome, ignoring any chars other than alphebetic and ignoring case
+return True if input is palindrome
+- ignore any chars other than alphebetic
+- ignore case
+- in-place - no copying the string
 """
 
 def is_palindrome(s):
@@ -12,9 +15,9 @@ def is_palindrome(s):
   while start < end:
     start_char = s[start]
     end_char = s[end]
-    if end_char < 'A' or end_char > 'Z' and end_char < 'a' or end_char > 'z':
+    if not end_char.isalpha(): # updated: start_char < 'A' or start_char > 'Z' and start_char < 'a' or start_char > 'z':
       end -= 1
-    elif start_char < 'A' or start_char > 'Z' and start_char < 'a' or start_char > 'z':
+    elif not start_char.isalpha():
       start += 1
     elif end_char.lower() != start_char.lower():
       return False
@@ -25,6 +28,10 @@ def is_palindrome(s):
 
 is_palindrome_tests = [
     [['aba'], True],
+    [['abba'], True],
+    [['acccbccca'], True],
+    [['acccbbccca'], True],
+    [['ab  c, d!  c3ba'], True],
     [['        aba'], True],
     [['abc'], False],
     [['a!ba'], True],
